@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Está com saudade de mim?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #fff;
+      text-align: center;
+      position: relative; /* Adicionado para criar um elemento pai relativo */
+    }
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      margin: 10px;
+      display: inline-block;
+    }
+    button:hover {
+      background-color: #444;
+    }
+    #no-button {
+      position: absolute; /* Mudança para position: absolute */
+    }
+    #success-message {
+      display: none;
+      color: green;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Está com saudade de mim?</h1>
+  <button id="sim-button">Sim</button>
+  <button id="no-button">Não</button>
+  <p id="success-message">Se eu te fiz alguma coisa, você me desculpa.</p>
+
+  <script>
+    const noButton = document.getElementById('no-button');
+    const simButton = document.getElementById('sim-button');
+    const successMessage = document.getElementById('success-message');
+
+    noButton.addEventListener('click', () => {
+      const maxX = window.innerWidth - noButton.offsetWidth;
+      const maxY = window.innerHeight - noButton.offsetHeight;
+      let newX = Math.floor(Math.random() * maxX);
+      let newY = Math.floor(Math.random() * maxY);
+
+      // Ajusta as coordenadas para que o botão não ultrapasse os limites da tela
+      newX = Math.max(0, newX);
+      newX = Math.min(maxX, newX);
+      newY = Math.max(0, newY);
+      newY = Math.min(maxY, newY);
+
+      noButton.style.top = `${newY}px`;
+      noButton.style.left = `${newX}px`;
+    });
+
+    simButton.addEventListener('click', () => {
+      successMessage.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
